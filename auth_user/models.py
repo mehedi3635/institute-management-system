@@ -25,7 +25,7 @@ class TeacherModel(models.Model):
     
 
 class StudentModel(models.Model):
-    student_user=models.OneToOneField(CustomeUserModel,on_delete=models.CASCADE, null=True,related_name='teacher_info')
+    student_user=models.OneToOneField(CustomeUserModel,on_delete=models.CASCADE, null=True,related_name='student_info')
     student_name=models.CharField(max_length=100,null=True)
     phone_number=models.CharField(max_length=29,null=True)
     profile_picture=models.ImageField(upload_to='media/student/',null=True)

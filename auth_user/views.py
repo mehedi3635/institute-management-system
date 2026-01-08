@@ -1,21 +1,47 @@
 from django.shortcuts import redirect, render
-from auth_user.models import *
-# Create your views here.
+from django.contrib.auth import login, logout, authenticate
+from auth_user.models import CustomeUserModel
+
 def regeesterpage(request):
-    if request.method =='POST':
-      username=  request.post.get('username')
-      email=  request.post.get('email')
-      psw=  request.post.get('psw')
-      psw_repeat=  request.post.get('psw_repeat')
-      
-      if psw == psw_repeat:
-          CustomeUserModel.objects.create_user(
-              username=username,
-              email=email,
-              psw=psw,
-              user_type="Admin"
-              
-          )
-          return redirect('loginpage')
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        email = request.POST.get('email')
+        password = request.POST.get('psw')
+        psw_repeat = request.POST.get('psw_repeat')
+
+        if password != psw_repeat:
+            return render(request, 'regerster.html', {'error': 'Passwords do not match'})
+
+        # Optional: check if username exists
+        if CustomeUserModel.objects.filter(username=username).exists():
+            return render(request, 'regerster.html', {'error': 'Username already exists'})
+
+        CustomeUserModel.objects.create_user(
+            username=username,
+            email=email,
+            password=password,
+            user_type="Admin"
+        )
+        return redirect('loginpage')
+
     return render(request, 'regerster.html')
-    
+
+
+def loginpage(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('psw')
+
+        user = authenticate(request, username=username, password=password)
+
+        if user is not None:
+            login(request, user)
+            return redirect('dashboard')
+        else:
+            return render(request, 'login.html', {'error': 'Invalid username or password'})
+
+    return render(request, 'login.html')
+
+
+def dashboard(request):
+    return render(request, 'dashboard.html')

@@ -55,6 +55,42 @@ button:hover { opacity:1; }
   clear: both;
   display: table;
 }
+.signupbtn {
+  background-color: #1daa04;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+
+  /* important for <a> */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;   /* underline remove */
+}
+.signupbtn1{
+  background-color: #91ca0c;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+
+  /* important for <a> */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none; 
+}
+.signupbtn:hover {
+  opacity: 1;
+}
+
 
 @media screen and (max-width: 300px) {
   .cancelbtn, .signupbtn { width: 100%; }
@@ -83,8 +119,15 @@ button:hover { opacity:1; }
     <input type="password" id="psw-repeat" placeholder="Repeat Password" name="psw_repeat" required>
 
     <div class="clearfix">
-      <button type="submit" class="signupbtn">Sign Up</button>
-    </div>
+    <button type="submit" class="signupbtn">
+        Sign Up
+    </button>
+
+    <a href="{% url 'loginpage' %}" class="signupbtn1">
+        Login
+    </a>
+</div>
+
   </div>
 </form>
 

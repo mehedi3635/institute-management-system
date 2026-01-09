@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>{% block title %}My Site{% endblock %}</title>
+  <style>
+    /* ===== Navbar CSS ===== */
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .navbar {
+      background-color: #04AA6D;
+      overflow: hidden;
+      padding: 0 20px;
+    }
+
+    .navbar a {
+      float: left;
+      color: white;
+      text-align: center;
+      padding: 14px 20px;
+      text-decoration: none;
+      font-size: 16px;
+    }
+
+    .navbar a:hover {
+      background-color: #038e5c;
+    }
+
+    .navbar-right {
+      float: right;
+    }
+
+    @media screen and (max-width: 600px) {
+      .navbar a,
+      .navbar-right {
+        float: none;
+        display: block;
+        text-align: left;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ===== Navbar ===== -->
+ {% include "master/nav.html" %}
+{% block content %}{% endblock %}
+
+</body>
+</html>

@@ -45,3 +45,7 @@ def loginpage(request):
 
 def dashboard(request):
     return render(request, 'dashboard.html')
+
+def logout_view(request):
+    logout(request)
+    return redirect('loginpage')

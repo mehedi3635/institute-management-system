@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body {font-family: Arial, Helvetica, sans-serif;}
+* {box-sizing: border-box}
+
+input {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  border: none;
+  background: #f1f1f1;
+}
+
+input:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+hr {
+  border: 1px solid #f1f1f1;
+  margin-bottom: 25px;
+}
+
+.signupbtn {
+  background-color: #0425aa;
+  color: white;
+  padding: 14px;
+  margin-top: 10px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+}
+
+.signupbtn:hover {
+  opacity: 1;
+}
+
+.container {
+  padding: 16px;
+  width: 500px;
+  margin: auto;
+}
+</style>
+</head>
+
+<body>
+
+<form method="POST" enctype="multipart/form-data" style="border:1px solid #ccc">
+  {% csrf_token %}
+  <div class="container">
+    <h1>Student Registration Form</h1>
+    <p>Create a new student account</p>
+    <hr>
+
+    {% if messages %}
+      {% for message in messages %}
+        <p style="color:red">{{ message }}</p>
+      {% endfor %}
+    {% endif %}
+
+    <label>Username</label>
+    <input type="text" name="username" required>
+
+    <label>Student Name</label>
+    <input type="text" name="student_name" required>
+
+    <label>Email</label>
+    <input type="email" name="email" required>
+
+    <label>Phone Number</label>
+    <input type="text" name="phone_number" required>
+
+    <label>Profile Picture</label>
+    <input type="file" name="profile_picture">
+
+    <button type="submit" class="signupbtn">Register Student</button>
+  </div>
+</form>
+
+</body>
+</html>
